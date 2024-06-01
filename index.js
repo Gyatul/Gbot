@@ -28,6 +28,9 @@ bot.on('message', (msg) => {
   // Mencatat aktivitas penggunaan bot di console log
   logActivity(msg);
 
+  if (command.startsWith('/start')) {
+    bot.sendMessage(chatId, 'Hello User, DDOS Bot by @gravemods - @zemoengine');
+  }
   // Menanggapi perintah /mix
   if (command.startsWith('/mix')) {
     // Mengekstrak argumen dari pesan
@@ -47,6 +50,7 @@ bot.on('message', (msg) => {
           return;
         }
         if (stderr) {
+          bot.sendMessage(chatId, 'Attacking......');
           console.error(`stderr: ${stderr}`);
           bot.sendMessage(chatId, 'Successful');
           return;
@@ -57,7 +61,7 @@ bot.on('message', (msg) => {
       });
     } else {
       // Memberi tahu pengguna bahwa format pesan tidak benar
-      bot.sendMessage(chatId, 'Format pesan tidak benar. Gunakan format: /mix [url] [time] [thread] [rate]');
+      bot.sendMessage(chatId, 'Please Follow The Format : /mix [url] [time] [thread] [rate]');
     }
   }
 });
