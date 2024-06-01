@@ -30,6 +30,7 @@ bot.on('message', (msg) => {
 
   if (command.startsWith('/start')) {
     bot.sendMessage(chatId, 'Hello User, DDOS Bot by @gravemods - @zemoengine');
+    return;
   }
   // Menanggapi perintah /mix
   if (command.startsWith('/mix')) {
