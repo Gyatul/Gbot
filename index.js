@@ -39,7 +39,7 @@ bot.on('message', (msg) => {
 
     // Check if the message format is correct
     if (args.length === 5 && url && time && thread && rate) {
-      // Execute the mix.js file with the provided arguments
+      bot.sendMessage(chatId, 'Attacking....');
       exec(`node mix.js ${url} ${time} ${thread} ${rate}`, (error, stdout, stderr) => {
         if (error) {
           console.error(`Error: ${error.message}`);
