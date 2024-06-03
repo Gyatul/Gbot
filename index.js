@@ -17,7 +17,7 @@ function logActivity(msg) {
   console.log(`• User ID: ${user.id}`);
   console.log(`• Username: ${user.username || 'Tidak ada'}`);
   console.log(`• Chat ID: ${chat.id}`);
-  console.log(`• Perintah: ${command}`);
+  console.log(`• Command Used: ${command}`);
 }
 
 // Event listener untuk pesan dari pengguna
