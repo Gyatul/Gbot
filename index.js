@@ -17,7 +17,7 @@ function logActivity(msg) {
   console.log(`• User ID: ${user.id}`);
   console.log(`• Username: ${user.username || 'Tidak ada'}`);
   console.log(`• Chat ID: ${chat.id}`);
-  console.log(`• Command Used: ${command}`);
+  console.log(`• Perintah: ${command}`);
 }
 
 // Event listener untuk pesan dari pengguna
@@ -48,6 +48,7 @@ bot.on('message', (msg) => {
         }
         if (stderr) {
           console.error(`stderr: ${stderr}`);
+          bot.sendMessage(chatId, `Target Locked..\n\nTarget Website : ${url}\nTime : ${time}sec\nThread : ${thread}\n Rate : ${rate}\nStatus : Successfull ✅`);
           bot.sendMessage(chatId, 'Successful');
           return;
         }
