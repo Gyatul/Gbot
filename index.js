@@ -23,6 +23,7 @@ function logActivity(msg) {
 // Event listener untuk pesan dari pengguna
 bot.on('message', (msg) => {
   const chatId = msg.chat.id;
+  const user = msg.from;
   const command = msg.text.toLowerCase();
 
   // Mencatat aktivitas penggunaan bot di console log
