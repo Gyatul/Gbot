@@ -13,11 +13,11 @@ function logActivity(msg) {
   const chat = msg.chat;
   const command = msg.text.toLowerCase();
 
-  console.log(`Aktivitas Penggunaan Bot Telegram`);
+  console.log(`Bot Interaction Log :`);
   console.log(`• User ID: ${user.id}`);
   console.log(`• Username: ${user.username || 'Tidak ada'}`);
   console.log(`• Chat ID: ${chat.id}`);
-  console.log(`• Perintah: ${command}`);
+  console.log(`• Command: ${command}`);
 }
 
 // Event listener untuk pesan dari pengguna
@@ -29,10 +29,10 @@ bot.on('message', (msg) => {
   logActivity(msg);
 
   // Menanggapi perintah /mix
-  if (command.startsWith('/start')){
-  bot.sendMessage(chatId , `Hello @${user.username} ,Ddos By @GraveMods - @ZemoEngine !\n• Use Mix To Start`);
-  return;
-  }
+  if (command.startsWith('/start')) {
+    bot.sendMessage(chatId, `-> Ddos By @GraveMods - @ZemoEngine`);
+    return;
+    }
   
   if (command.startsWith('/mix')) {
     // Mengekstrak argumen dari pesan
