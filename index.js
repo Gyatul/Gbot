@@ -31,7 +31,7 @@ bot.on('message', (msg) => {
 
   // Menanggapi perintah /mix
   if (command.startsWith('/start')) {
-    bot.sendMessage(chatId, `Hello @${user.username} || Ddos By @GraveMods - @ZemoEngine`);
+    bot.sendMessage(chatId, `Hello @${user.username} || Ddos By @GraveMods - @ZemoEngine\n-> Use /ddos For Attacking !`);
     return;
     }
   
